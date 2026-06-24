@@ -63,9 +63,9 @@ export default function Console() {
         <div className="overflow-hidden rounded-sketch border border-border bg-card/90 shadow-sketch backdrop-blur">
           {/* Title bar */}
           <div className="flex items-center gap-2 border-b border-border bg-muted/60 px-4 py-2.5">
-            <span className="size-3 rounded-full bg-[var(--destructive)]" />
-            <span className="size-3 rounded-full bg-[var(--warn)]" />
-            <span className="size-3 rounded-full bg-[var(--good)]" />
+            <span className="size-3 rounded-full bg-destructive" />
+            <span className="size-3 rounded-full bg-warn" />
+            <span className="size-3 rounded-full bg-good" />
             <span className="ml-3 text-xs text-muted-foreground">pior@homeserver — {clock.timeWithSeconds}</span>
           </div>
 
@@ -74,7 +74,7 @@ export default function Console() {
             className="flex items-center gap-2 border-b border-border px-4 py-3.5 text-sm"
             onClick={() => inputRef.current?.focus()}
           >
-            <span className="select-none text-[var(--good)]">➜</span>
+            <span className="select-none text-good">➜</span>
             <span className="select-none text-primary">~</span>
             <span className="select-none text-muted-foreground">open</span>
             <input
@@ -117,10 +117,10 @@ export default function Console() {
                       className={cn(
                         "size-1.5 shrink-0 rounded-full",
                         link.status === "online"
-                          ? "bg-[var(--good)]"
+                          ? "bg-good"
                           : link.status === "idle"
-                            ? "bg-[var(--warn)]"
-                            : "bg-[var(--destructive)]",
+                            ? "bg-warn"
+                            : "bg-destructive",
                       )}
                     />
                     <span className="w-32 shrink-0 font-medium text-card-foreground">{link.name}</span>

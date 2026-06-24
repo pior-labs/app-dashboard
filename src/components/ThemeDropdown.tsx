@@ -42,7 +42,6 @@ export function ThemeDropdown({ className }: { className?: string }) {
         className="flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-sm font-medium text-card-foreground shadow-sketch-xs backdrop-blur transition-colors hover:bg-primary-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background"
       >
         <Palette className="size-4 opacity-70" aria-hidden="true" />
-        <Swatch swatch={active.swatch} />
         <span className="hidden sm:inline">{active.name}</span>
         <ChevronDown
           className={cn("size-4 opacity-60 transition-transform", open && "rotate-180")}
