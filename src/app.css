@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "@finlens/theme/styles.css";
+@import "@ipior/custom-tailwind-shadcn-themes/styles.css";
 
 @layer base {
   * {

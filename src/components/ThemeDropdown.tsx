@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { Check, ChevronDown, Palette } from "lucide-react";
-import { useTheme } from "@finlens/theme";
+import { useTheme } from "@ipior/custom-tailwind-shadcn-themes";
 import { cn } from "@/lib/utils";
 
 /**
  * Theme picker as a real dropdown (not a binary toggle) so it scales as more
- * themes are added to @finlens/theme. Closes on outside-click and Escape.
+ * themes are added to the shared theme package. Closes on outside-click and Escape.
  */
 export function ThemeDropdown({ className }: { className?: string }) {
   const { theme, setTheme, themes } = useTheme();
