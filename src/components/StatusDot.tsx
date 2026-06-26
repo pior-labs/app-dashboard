@@ -1,4 +1,4 @@
-import type { LinkStatus } from "@/config/links";
+import type { LinkStatus } from "@/lib/dashboardLinks";
 import { cn } from "@/lib/utils";
 
 const STATUS_STYLES: Record<LinkStatus, { dot: string; label: string }> = {

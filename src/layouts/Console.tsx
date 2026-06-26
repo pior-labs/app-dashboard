@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { links } from "@/config/links";
+import { links } from "@/lib/dashboardLinks";
 import { useClock } from "@/lib/useClock";
 import { Controls } from "@/components/Controls";
 import { cn } from "@/lib/utils";

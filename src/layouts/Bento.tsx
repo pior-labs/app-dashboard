@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { links } from "@/config/links";
+import { links } from "@/lib/dashboardLinks";
 import { useClock } from "@/lib/useClock";
 import { Controls } from "@/components/Controls";
 import { StatusDot } from "@/components/StatusDot";
