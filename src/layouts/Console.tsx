@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { links } from "@/lib/dashboardLinks";
+import { useDashboardLinks } from "@/lib/dashboardLinks";
 import { useClock } from "@/lib/useClock";
 import { Controls } from "@/components/Controls";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,7 @@ const MONO = "'IBM Plex Mono', ui-monospace, monospace";
  */
 export default function Console() {
   const clock = useClock();
+  const links = useDashboardLinks();
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,7 @@ export default function Console() {
         l.description?.toLowerCase().includes(q) ||
         l.group.toLowerCase().includes(q),
     );
-  }, [query]);
+  }, [links, query]);
 
   function open(index: number) {
     const link = results[index];

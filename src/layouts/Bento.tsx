@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { links } from "@/lib/dashboardLinks";
+import { useDashboardLinks } from "@/lib/dashboardLinks";
 import { useClock } from "@/lib/useClock";
 import { Controls } from "@/components/Controls";
 import { StatusDot } from "@/components/StatusDot";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
  */
 export default function Bento() {
   const clock = useClock();
+  const links = useDashboardLinks();
 
   // Tile size pattern: the first app gets a wide tile, the rest are 1x1.
   const sizeFor = (i: number) =>

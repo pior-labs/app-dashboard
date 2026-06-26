@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
   Bot,
@@ -38,7 +39,7 @@ export type LinkItem = {
   newTab?: boolean;
 };
 
-export type EnvLinkItem = Omit<LinkItem, "icon"> & {
+export type JsonLinkItem = Omit<LinkItem, "icon"> & {
   icon?: LinkIconName;
 };
 
@@ -60,31 +61,54 @@ const ICONS: Record<LinkIconName, LucideIcon> = {
   Send,
 };
 
-function parseLinks(rawLinks: string | undefined): EnvLinkItem[] {
-  if (!rawLinks) return [];
+function toLinkItem(link: JsonLinkItem): LinkItem {
+  return {
+    ...link,
+    icon: link.icon ? ICONS[link.icon] : undefined,
+  };
+}
 
+async function fetchDashboardLinks(): Promise<LinkItem[]> {
   try {
-    const parsed = JSON.parse(rawLinks);
-    return Array.isArray(parsed) ? parsed : [];
+    const response = await fetch("/links.json");
+    if (!response.ok) return [];
+
+    const parsed = await response.json();
+    return Array.isArray(parsed) ? parsed.map(toLinkItem) : [];
   } catch (error) {
-    console.warn("VITE_DASHBOARD_LINKS must be a JSON array.", error);
+    console.warn("Could not load /links.json.", error);
     return [];
   }
 }
 
-export const links: LinkItem[] = parseLinks(import.meta.env.VITE_DASHBOARD_LINKS).map((link) => ({
-  ...link,
-  icon: link.icon ? ICONS[link.icon] : undefined,
-}));
+export function useDashboardLinks() {
+  const [links, setLinks] = useState<LinkItem[]>([]);
 
-/** Distinct group titles, in first-seen order. */
-export const groups: string[] = links.reduce<string[]>((acc, link) => {
-  if (!acc.includes(link.group)) acc.push(link.group);
-  return acc;
-}, []);
+  useEffect(() => {
+    let active = true;
 
-/** Links bucketed into sections for grid-style layouts. */
-export const sections: Section[] = groups.map((title) => ({
-  title,
-  links: links.filter((link) => link.group === title),
-}));
+    fetchDashboardLinks().then((nextLinks) => {
+      if (active) setLinks(nextLinks);
+    });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  return links;
+}
+
+export function getGroups(links: LinkItem[]): string[] {
+  return links.reduce<string[]>((acc, link) => {
+    if (!acc.includes(link.group)) acc.push(link.group);
+    return acc;
+  }, []);
+}
+
+export function getSections(links: LinkItem[]): Section[] {
+  return getGroups(links).map((title) => ({
+    title,
+    links: links.filter((link) => link.group === title),
+  }));
+}
