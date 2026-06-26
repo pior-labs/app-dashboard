@@ -53,6 +53,13 @@ export default function Console() {
       className="relative flex min-h-screen items-start justify-center bg-background px-4 pb-28 pt-10 text-foreground sm:items-center sm:pt-10"
       style={{ fontFamily: MONO }}
     >
+      <div className="bloom-mesh" aria-hidden="true">
+        <div className="bloom-blob b1" />
+        <div className="bloom-blob b2" />
+        <div className="bloom-blob b3" />
+        <div className="bloom-blob b4" />
+        <div className="bloom-blob b5" />
+      </div>
       <div className="bloom-grain" aria-hidden="true" />
 
       <div className="hp-fade relative z-10 w-full max-w-3xl">
