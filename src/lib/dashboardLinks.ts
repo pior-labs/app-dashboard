@@ -4,6 +4,7 @@ import {
   Bot,
   ChartNoAxesCombined,
   Container,
+  Database,
   Film,
   Gauge,
   HardDrive,
@@ -11,6 +12,7 @@ import {
   KeyRound,
   Network,
   Send,
+  WalletCards,
 } from "lucide-react";
 
 export type DashboardConfig = {
@@ -24,13 +26,15 @@ export type LinkIconName =
   | "Bot"
   | "ChartNoAxesCombined"
   | "Container"
+  | "Database"
   | "Film"
   | "Gauge"
   | "HardDrive"
   | "HeartPulse"
   | "KeyRound"
   | "Network"
-  | "Send";
+  | "Send"
+  | "WalletCards";
 
 export type LinkItem = {
   name: string;
@@ -51,6 +55,7 @@ const ICONS: Record<LinkIconName, LucideIcon> = {
   Bot,
   ChartNoAxesCombined,
   Container,
+  Database,
   Film,
   Gauge,
   HardDrive,
@@ -58,6 +63,7 @@ const ICONS: Record<LinkIconName, LucideIcon> = {
   KeyRound,
   Network,
   Send,
+  WalletCards,
 };
 
 const EMPTY_CONFIG: DashboardConfig = {
