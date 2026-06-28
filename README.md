@@ -79,3 +79,20 @@ cp config.example.json /path/on/server/config.json
 ```
 
 Then edit `/path/on/server/config.json` by hand for that server's LAN/Tailscale links.
+
+## Self-hosted runner deploy
+
+Pushes to `main` run `.github/workflows/deploy.yml` on a self-hosted runner with the `homepage-dashboard` label.
+The runner builds the app and deploys `dist/` locally to `/srv/homepage-dashboard`.
+
+The runner user must be able to write to:
+
+```text
+/srv/homepage-dashboard
+```
+
+The workflow does not write the runtime config. Keep the production config on the server at:
+
+```text
+/config/config.json
+```
