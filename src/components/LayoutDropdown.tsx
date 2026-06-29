@@ -50,7 +50,7 @@ export function LayoutDropdown({ className }: { className?: string }) {
       {open && (
         <div
           role="menu"
-          className="bloom-glass absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-sketch border border-border bg-card/95 p-1.5 shadow-sketch"
+          className="theme-glass absolute right-0 z-50 mt-2 w-52 origin-top-right rounded-sketch border border-border bg-card/95 p-1.5 shadow-sketch"
         >
           <div className="px-2.5 pb-1.5 pt-1 font-serif text-[11px] italic tracking-wide text-muted-foreground">
             Layout

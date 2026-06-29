@@ -22,14 +22,14 @@ export default function Bento() {
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-background font-sans text-foreground">
-      <div className="bloom-mesh" aria-hidden="true">
-        <div className="bloom-blob b1" />
-        <div className="bloom-blob b2" />
-        <div className="bloom-blob b3" />
-        <div className="bloom-blob b4" />
-        <div className="bloom-blob b5" />
+      <div className="theme-mesh" aria-hidden="true">
+        <div className="theme-blob b1" />
+        <div className="theme-blob b2" />
+        <div className="theme-blob b3" />
+        <div className="theme-blob b4" />
+        <div className="theme-blob b5" />
       </div>
-      <div className="bloom-grain" aria-hidden="true" />
+      <div className="theme-grain" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-10 pt-6 sm:px-6 sm:pt-10">
         <header className="mb-5 flex items-center justify-between gap-4">
