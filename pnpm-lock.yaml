@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@ipior/custom-tailwind-shadcn-themes':
-        specifier: github:iPior/custom-tailwind-shadcn-themes#pkg
-        version: https://codeload.github.com/iPior/custom-tailwind-shadcn-themes/tar.gz/3560c373c062aed81f423444b377a6f88c495ab5(react@19.2.7)
+      '@pior-labs/design-system':
+        specifier: 1.0.0
+        version: 1.0.0(react@19.2.7)
       '@tailwindcss/vite':
         specifier: ^4.1.11
         version: 4.3.1(vite@6.4.3(@types/node@22.20.0)(jiti@2.7.0)(lightningcss@1.32.0))
@@ -293,12 +293,6 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@ipior/custom-tailwind-shadcn-themes@https://codeload.github.com/iPior/custom-tailwind-shadcn-themes/tar.gz/3560c373c062aed81f423444b377a6f88c495ab5':
-    resolution: {tarball: https://codeload.github.com/iPior/custom-tailwind-shadcn-themes/tar.gz/3560c373c062aed81f423444b377a6f88c495ab5}
-    version: 0.1.0
-    peerDependencies:
-      react: ^19.0.0
-
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
 
@@ -314,6 +308,11 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@pior-labs/design-system@1.0.0':
+    resolution: {version: 1.0.0}
+    peerDependencies:
+      react: ^19.0.0
 
   '@rolldown/pluginutils@1.0.0-beta.27':
     resolution: {integrity: sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA==}
@@ -1051,10 +1050,6 @@ snapshots:
   '@esbuild/win32-x64@0.25.12':
     optional: true
 
-  '@ipior/custom-tailwind-shadcn-themes@https://codeload.github.com/iPior/custom-tailwind-shadcn-themes/tar.gz/3560c373c062aed81f423444b377a6f88c495ab5(react@19.2.7)':
-    dependencies:
-      react: 19.2.7
-
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
@@ -1073,6 +1068,10 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@pior-labs/design-system@1.0.0(react@19.2.7)':
+    dependencies:
+      react: 19.2.7
 
   '@rolldown/pluginutils@1.0.0-beta.27': {}
 
