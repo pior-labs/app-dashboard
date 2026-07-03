@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@pior-labs/design-system':
-        specifier: 1.0.0
-        version: 1.0.0(react@19.2.7)
+        specifier: 1.0.1
+        version: 1.0.1(react@19.2.7)
       '@tailwindcss/vite':
         specifier: ^4.1.11
         version: 4.3.1(vite@6.4.3(@types/node@22.20.0)(jiti@2.7.0)(lightningcss@1.32.0))
@@ -309,8 +309,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@pior-labs/design-system@1.0.0':
-    resolution: {version: 1.0.0}
+  '@pior-labs/design-system@1.0.1':
+    resolution: {integrity: sha512-vfvt+Z3UjMaE87tZDe32lyJq3poxQu5LmPjxBXxu8DhtrIhPQUJPERfrP21Z2VFfvZ35gIUdF7XUWG3UjHIgzw==, tarball: https://npm.pkg.github.com/download/@pior-labs/design-system/1.0.1/45fbb033b15a21d78023c55bd63a731f75ac28a6}
     peerDependencies:
       react: ^19.0.0
 
@@ -1069,7 +1069,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@pior-labs/design-system@1.0.0(react@19.2.7)':
+  '@pior-labs/design-system@1.0.1(react@19.2.7)':
     dependencies:
       react: 19.2.7
 
