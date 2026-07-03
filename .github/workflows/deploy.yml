@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 concurrency:
   group: deploy-static-dashboard
@@ -32,9 +33,13 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
+          registry-url: https://npm.pkg.github.com
+          scope: "@pior-labs"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build static files
         run: pnpm build
