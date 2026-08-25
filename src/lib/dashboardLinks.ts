@@ -4,6 +4,7 @@ import {
   Bot,
   ChartNoAxesCombined,
   Container,
+  CookingPot,
   Database,
   Film,
   Gauge,
@@ -26,6 +27,7 @@ export type LinkIconName =
   | "Bot"
   | "ChartNoAxesCombined"
   | "Container"
+  | "CookingPot"
   | "Database"
   | "Film"
   | "Gauge"
@@ -55,6 +57,7 @@ const ICONS: Record<LinkIconName, LucideIcon> = {
   Bot,
   ChartNoAxesCombined,
   Container,
+  CookingPot,
   Database,
   Film,
   Gauge,
