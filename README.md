@@ -39,8 +39,7 @@ Shape:
     {
       "name": "Jellyfin",
       "description": "Media streaming",
-      "href": "http://jellyfin.example.lan",
-      "fallbackHref": "http://jellyfin.tailnet-name.ts.net",
+      "href": "https://jellyfin.example.com",
       "icon": "Film",
       "group": "Media",
       "status": "online",
@@ -50,9 +49,9 @@ Shape:
 }
 ```
 
-`href` is the primary URL. `fallbackHref` is optional; when present, clicks briefly probe `href`
-first and open `fallbackHref` if the primary URL cannot be reached. If both probes fail, the app
-opens `href` so the browser shows the real connection error.
+Each service should use one canonical `href`. In environments using split-horizon DNS, the same hostname can
+resolve to the appropriate private, Tailscale, or public route depending on where the client is connected. The
+dashboard does not probe alternate URLs or need to know which network path is in use.
 
 See `config.example.json` for a complete dummy config. Real `config.json` files are ignored and should not be
 committed.
@@ -83,7 +82,8 @@ On a fresh server, start with:
 cp config.example.json /path/on/server/config.json
 ```
 
-Then edit `/path/on/server/config.json` by hand for that server's LAN/Tailscale links.
+Then edit `/path/on/server/config.json` with the canonical URL for each service. DNS should handle routing that
+hostname appropriately for LAN, Tailscale, or any other supported network path.
 
 ## Self-hosted runner deploy
 

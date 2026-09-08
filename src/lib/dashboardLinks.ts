@@ -42,7 +42,6 @@ export type LinkItem = {
   name: string;
   description?: string;
   href: string;
-  fallbackHref?: string;
   icon?: LucideIcon;
   group: string;
   status?: LinkStatus;
@@ -128,7 +127,6 @@ function parseLinkItem(value: unknown, index: number): LinkItem {
     name: validateRequiredString(value.name, `links[${index}].name`),
     description: validateOptionalString(value.description, `links[${index}].description`),
     href: validateRequiredString(value.href, `links[${index}].href`),
-    fallbackHref: validateOptionalString(value.fallbackHref, `links[${index}].fallbackHref`),
     icon,
     group: validateOptionalString(value.group, `links[${index}].group`) ?? "Links",
     status,
