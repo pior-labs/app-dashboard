@@ -4,8 +4,7 @@
     {
       "name": "Jellyfin",
       "description": "Media streaming",
-      "href": "http://jellyfin.example.lan",
-      "fallbackHref": "http://jellyfin.tailnet-name.ts.net",
+      "href": "https://jellyfin.example.com",
       "icon": "Film",
       "group": "Media",
       "status": "online",
@@ -14,7 +13,7 @@
     {
       "name": "Grafana",
       "description": "Metrics dashboards",
-      "href": "http://grafana.example.lan",
+      "href": "https://grafana.example.com",
       "icon": "Gauge",
       "group": "Infrastructure",
       "status": "idle",
