@@ -5,7 +5,8 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
-  publicDir: false,
+  // Keep favicon and manifest filenames stable, including the manifest's icon URLs.
+  publicDir: "src/assets",
   plugins: [
     react(),
     tailwindcss(),
