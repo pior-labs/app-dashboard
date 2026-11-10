@@ -4,3 +4,8 @@ notes
 .env
 .env.*
 config.json
+
+__pycache__/
+
+.agents/
+.claude/

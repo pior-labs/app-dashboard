@@ -1,48 +1,76 @@
 name: Deploy static dashboard
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
+    inputs:
+      ci_run_id:
+        description: Full successful main CI run ID from the URL (not the displayed run number)
+        required: true
+        type: string
+      ci_run_attempt:
+        description: Optional exact CI attempt (leave blank for latest; use the recorded attempt for rollback)
+        required: false
+        type: string
 
 permissions:
   contents: read
   packages: read
+  actions: read
 
+# Every future maintenance workflow that mutates this repository's production must use
+# this same group. In-flight migrations must never be cancelled by a new deploy.
 concurrency:
-  group: deploy-static-dashboard
-  cancel-in-progress: true
+  group: dashboard-production
+  cancel-in-progress: false
 
 jobs:
-  deploy:
-    name: Build and deploy
-    runs-on: [self-hosted, homepage-dashboard]
-
+  resolve:
+    timeout-minutes: 5
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'))
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.release.outputs.sha }}
+      attempt: ${{ steps.release.outputs.attempt }}
+      run_id: ${{ steps.release.outputs.run_id }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.8.1
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
-          registry-url: https://npm.pkg.github.com
-          scope: "@pior-labs"
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - uses: actions/checkout@v4
+      - name: Resolve successful CI release
+        id: release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI_RUN_ID: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.id || inputs.ci_run_id }}
+          AUTOMATIC_DEPLOY: ${{ github.event_name == 'workflow_run' }}
+          CI_RUN_ATTEMPT: ${{ inputs.ci_run_attempt }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/release.py resolve
+      - uses: actions/upload-artifact@v4
+        if: steps.release.outputs.sha != ''
+        with:
+          name: deployment-release
+          path: |
+            release.json
+            site.tar.gz
+          if-no-files-found: error
+          retention-days: 90
 
-      - name: Build static files
-        run: pnpm build
-
-      - name: Deploy static build
-        run: rsync -a --delete dist/ /srv/homepage-dashboard/
+  deploy:
+    needs: resolve
+    if: needs.resolve.outputs.sha != ''
+    environment: PRODUCTION
+    runs-on: [self-hosted, homepage-dashboard]
+    timeout-minutes: 20
+    env:
+      DEPLOY_DIR: ${{ vars.DEPLOY_DIR || '/srv/homepage-dashboard-releases' }}
+      EXPECTED_SHA: ${{ needs.resolve.outputs.sha }}
+      EXPECTED_RUN_ID: ${{ needs.resolve.outputs.run_id }}
+      EXPECTED_ATTEMPT: ${{ needs.resolve.outputs.attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: deployment-release
+      - name: Deploy verified static artifact
+        run: python3 scripts/deploy.py
