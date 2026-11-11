@@ -1,0 +1,8 @@
+{
+  "services": [],
+  "kind": "static",
+  "base_url": "https://szarans.ca",
+  "health_paths": [
+    "/"
+  ]
+}
