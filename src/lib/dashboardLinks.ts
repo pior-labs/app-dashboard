@@ -11,6 +11,7 @@ import {
   HardDrive,
   HeartPulse,
   KeyRound,
+  ListChecks,
   Network,
   Send,
   WalletCards,
@@ -34,6 +35,7 @@ export type LinkIconName =
   | "HardDrive"
   | "HeartPulse"
   | "KeyRound"
+  | "ListChecks"
   | "Network"
   | "Send"
   | "WalletCards";
@@ -63,6 +65,7 @@ const ICONS: Record<LinkIconName, LucideIcon> = {
   HardDrive,
   HeartPulse,
   KeyRound,
+  ListChecks,
   Network,
   Send,
   WalletCards,
