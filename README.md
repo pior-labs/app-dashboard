@@ -8,6 +8,10 @@ per server.
 
 ## Development
 
+`@pior-labs/design-system` comes from GitHub Packages. Export a token with `read:packages` as
+`GITHUB_TOKEN` and add `//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}` to your user-level `~/.npmrc`
+(current pnpm ignores credentials in the committed `.npmrc`).
+
 ```bash
 pnpm install
 pnpm dev
